@@ -1,0 +1,3 @@
+Letakkan fail bahan rujukan Jawi (PDF, DOCX, PPTX, TXT, XLSX atau CSV) dalam folder ini.
+Fail yang disokong akan disenaraikan secara automatik dalam Pusat Bahan Jawi.
+Pastikan ejaan dan kandungan bahan disemak sebelum dikongsikan kepada orang ramai.

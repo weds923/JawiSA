@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="ms">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f2eb">
+  <title>JAWI.AI — Teman Digital Jawi Brunei</title>
+  <style>
+    :root {
+      --paper: #f6f2eb; --card: #fffdf9; --ink: #202b28;
+      --muted: #68736d; --green: #235b4a; --green2: #dcebe3;
+      --gold: #c49b55; --line: #e6e0d5; --shadow: 0 18px 55px rgba(31,52,43,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; color: var(--ink); background:
+        radial-gradient(circle at 90% 5%, rgba(196,155,85,.14), transparent 23rem),
+        var(--paper); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    .wrap { width: min(1080px, calc(100% - 32px)); margin: 0 auto; }
+    header { padding: 25px 0; display:flex; align-items:center; justify-content:space-between; gap:18px; }
+    .brand { display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:.04em; }
+    .logo { display:grid; place-items:center; width:44px; height:44px; border-radius:15px; background:var(--green); color:#fff; font-size:23px; }
+    .brand small { display:block; color:var(--muted); font-size:11px; font-weight:600; letter-spacing:.02em; margin-top:3px; }
+    .badge { border:1px solid var(--line); background:rgba(255,253,249,.75); border-radius:999px; padding:9px 13px; font-size:12px; color:var(--green); }
+    .hero { padding:40px 0 30px; max-width:760px; }
+    .eyebrow { color:var(--green); font-size:12px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; }
+    h1 { font-size:clamp(36px, 6vw, 62px); line-height:1.04; letter-spacing:-.055em; margin:15px 0; }
+    h1 span { color:var(--green); }
+    .hero p { color:var(--muted); font-size:16px; line-height:1.75; max-width:620px; margin:0; }
+    .layout { display:grid; grid-template-columns:minmax(0, 1.45fr) minmax(260px, .8fr); gap:22px; align-items:start; padding-bottom:56px; }
+    .card { background:var(--card); border:1px solid rgba(230,224,213,.9); border-radius:24px; box-shadow:var(--shadow); }
+    .translator { padding:25px; }
+    .card-head { display:flex; justify-content:space-between; gap:12px; align-items:center; margin-bottom:17px; }
+    h2 { margin:0; font-size:19px; letter-spacing:-.025em; }
+    .sub { color:var(--muted); font-size:12px; margin-top:5px; }
+    label { display:block; font-weight:700; font-size:13px; margin:18px 0 9px; }
+    textarea { width:100%; min-height:145px; resize:vertical; border:1px solid var(--line); border-radius:16px; background:#fff; padding:16px; color:var(--ink); font:inherit; outline:none; transition:.2s; }
+    textarea:focus { border-color:var(--green); box-shadow:0 0 0 3px rgba(35,91,74,.1); }
+    .controls { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:12px; flex-wrap:wrap; }
+    .hint { font-size:12px; color:var(--muted); }
+    button, .button { border:0; border-radius:12px; padding:12px 16px; font:inherit; font-weight:750; font-size:13px; cursor:pointer; text-decoration:none; display:inline-flex; align-items:center; justify-content:center; gap:8px; }
+    .primary { background:var(--green); color:white; }
+    .primary:disabled { opacity:.65; cursor:wait; }
+    .secondary { background:var(--green2); color:var(--green); }
+    .result-box { margin-top:23px; border-radius:17px; background:#f8f6f0; border:1px solid var(--line); padding:17px; }
+    .result-top { display:flex; justify-content:space-between; align-items:center; gap:12px; }
+    .result-label { font-size:11px; color:var(--muted); text-transform:uppercase; letter-spacing:.12em; font-weight:800; }
+    #result { font-size:27px; line-height:1.8; overflow-wrap:anywhere; margin:12px 0 14px; direction:rtl; text-align:right; }
+    #notice { font-size:12px; line-height:1.6; color:var(--muted); }
+    .side { display:grid; gap:18px; }
+    .side-card { padding:22px; }
+    .side-card p { color:var(--muted); font-size:13px; line-height:1.65; }
+    .feature { display:flex; gap:12px; margin-top:17px; align-items:flex-start; }
+    .feature-icon { width:34px; height:34px; flex:0 0 34px; border-radius:11px; display:grid; place-items:center; background:var(--green2); color:var(--green); }
+    .feature strong { display:block; font-size:13px; margin:2px 0 4px; }
+    .feature span { display:block; color:var(--muted); font-size:12px; line-height:1.5; }
+    .resource-list { margin-top:15px; display:grid; gap:9px; }
+    .resource { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:12px; border:1px solid var(--line); border-radius:13px; font-size:12px; }
+    .resource a { color:var(--green); font-weight:800; text-decoration:none; white-space:nowrap; }
+    .empty { color:var(--muted); font-size:12px; line-height:1.6; background:#f8f6f0; padding:13px; border-radius:12px; }
+    footer { border-top:1px solid var(--line); padding:22px 0 30px; color:var(--muted); font-size:11px; line-height:1.7; }
+    @media (max-width:760px) { header { align-items:flex-start; } .badge { display:none; } .hero { padding-top:25px; } .layout { grid-template-columns:1fr; } .translator { padding:19px; } #result { font-size:24px; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="brand"><div class="logo">ج</div><div>JAWI.AI<small>TEMAN DIGITAL JAWI BRUNEI</small></div></div>
+      <div class="badge">✦ Mudah • Mesra pengguna • Untuk semua</div>
+    </header>
+
+    <section class="hero">
+      <div class="eyebrow">Bahasa • Warisan • Teknologi</div>
+      <h1>Rumi masuk,<br><span>Jawi keluar.</span></h1>
+      <p>Ruang digital untuk membantu orang ramai menukar perkataan Rumi kepada tulisan Jawi. Bahan rujukan dan kaedah ejaan boleh ditambah serta dimuat turun dari semasa ke semasa.</p>
+    </section>
+
+    <main class="layout">
+      <section class="card translator">
+        <div class="card-head">
+          <div><h2>Penterjemah Rumi → Jawi</h2><div class="sub">Taip perkataan atau ayat dalam Bahasa Melayu.</div></div>
+          <span aria-hidden="true">✧</span>
+        </div>
+        <label for="inputText">Teks Rumi</label>
+        <textarea id="inputText" placeholder="Contoh: selamat pagi Brunei..." maxlength="2000"></textarea>
+        <div class="controls">
+          <span class="hint">Maksimum 2,000 aksara</span>
+          <button class="primary" id="translateBtn" onclick="translateText()">Tukar kepada Jawi <span>→</span></button>
+        </div>
+        <div class="result-box" aria-live="polite">
+          <div class="result-top"><div class="result-label">Hasil tulisan Jawi</div><button class="secondary" onclick="copyResult()">Salin hasil</button></div>
+          <div id="result">نتيجة جاوي akan dipaparkan di sini</div>
+          <div id="notice">Nota: Ketepatan bergantung pada perkataan yang tersedia dalam kamus rujukan.</div>
+        </div>
+        <div class="controls">
+          <button class="secondary" onclick="clearText()">Kosongkan</button>
+          <a class="button secondary" href="/download/dictionary">Muat turun kamus TSV ↓</a>
+        </div>
+      </section>
+
+      <aside class="side">
+        <section class="card side-card">
+          <h2>Direka untuk semua</h2>
+          <div class="feature"><div class="feature-icon">⌕</div><div><strong>Ringkas dan mudah</strong><span>Antaramuka yang jelas untuk pengguna baharu.</span></div></div>
+          <div class="feature"><div class="feature-icon">ج</div><div><strong>Kamus boleh dikemas kini</strong><span>Tambah padanan Rumi–Jawi melalui fail TSV.</span></div></div>
+          <div class="feature"><div class="feature-icon">↓</div><div><strong>Bahan boleh dimuat turun</strong><span>Kaedah ejaan, nota dan panduan boleh dikongsi sebagai fail.</span></div></div>
+        </section>
+        <section class="card side-card">
+          <h2>Pusat bahan Jawi</h2>
+          <p>Bahan rujukan yang diletakkan dalam folder <b>bahan_jawi</b> akan disenaraikan di sini secara automatik.</p>
+          <div class="resource-list" id="resources"><div class="empty">Sedang memuatkan bahan…</div></div>
+        </section>
+      </aside>
+    </main>
+    <footer>
+      <b>JAWI.AI — Teman Digital Jawi Brunei</b><br>
+      Projek prototaip. Hasil penukaran perlu disemak dengan rujukan ejaan Jawi yang sahih. Perkataan yang tiada dalam kamus dikekalkan dalam Rumi dan tidak diteka oleh sistem.
+    </footer>
+  </div>
+
+<script>
+async function translateText() {
+  const input = document.getElementById('inputText').value.trim();
+  const btn = document.getElementById('translateBtn');
+  const result = document.getElementById('result');
+  const notice = document.getElementById('notice');
+  if (!input) {
+    notice.textContent = 'Sila masukkan perkataan atau ayat terlebih dahulu.';
+    document.getElementById('inputText').focus();
+    return;
+  }
+  btn.disabled = true;
+  btn.textContent = 'Sedang menukar…';
+  try {
+    const response = await fetch('/translate', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json'},
+      body: JSON.stringify({text: input})
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || 'Terjemahan tidak berjaya.');
+    result.textContent = data.result;
+    if (data.unknown_words && data.unknown_words.length) {
+      notice.textContent = 'Perkataan yang belum ada dalam kamus (dikekalkan dalam Rumi): ' + data.unknown_words.join(', ') + '. Sila semak atau tambah padanannya dalam fail rumi-jawi.tsv.';
+    } else {
+      notice.textContent = 'Selesai. Sila semak ejaan Jawi dengan rujukan yang sahih.';
+    }
+  } catch (error) {
+    notice.textContent = error.message || 'Ralat berlaku. Sila cuba lagi.';
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = 'Tukar kepada Jawi <span>→</span>';
+  }
+}
+async function copyResult() {
+  const text = document.getElementById('result').textContent;
+  try {
+    await navigator.clipboard.writeText(text);
+    document.getElementById('notice').textContent = 'Hasil telah disalin.';
+  } catch {
+    document.getElementById('notice').textContent = 'Salinan automatik tidak disokong oleh pelayar ini. Sila pilih dan salin teks secara manual.';
+  }
+}
+function clearText() {
+  document.getElementById('inputText').value = '';
+  document.getElementById('result').textContent = 'نتيجة جاوي akan dipaparkan di sini';
+  document.getElementById('notice').textContent = 'Nota: Ketepatan bergantung pada perkataan yang tersedia dalam kamus rujukan.';
+}
+async function loadResources() {
+  const target = document.getElementById('resources');
+  try {
+    const response = await fetch('/resources');
+    const items = await response.json();
+    if (!items.length) {
+      target.innerHTML = '<div class="empty">Belum ada bahan dimuat naik. Letakkan fail PDF atau dokumen dalam folder <b>bahan_jawi</b>, kemudian muat semula halaman ini.</div>';
+      return;
+    }
+    target.innerHTML = items.map(item => `<div class="resource"><span>📄 ${escapeHtml(item.name)}</span><a href="${item.url}">Muat turun ↓</a></div>`).join('');
+  } catch {
+    target.innerHTML = '<div class="empty">Bahan tidak dapat dimuatkan buat masa ini.</div>';
+  }
+}
+function escapeHtml(text) {
+  return text.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+document.getElementById('inputText').addEventListener('keydown', event => {
+  if ((event.ctrlKey || event.metaKey) && event.key === 'Enter') translateText();
+});
+loadResources();
+</script>
+</body>
+</html>
